@@ -1,0 +1,109 @@
+/* ===== Tokens ===== */
+:root{
+  --soft:#FCE7F3; --baby:#FBCFE8; --cream:#FFF7ED; --rose:#E11D48; --white:#fff;
+  --ink:#5b2340; --font:'Poppins',system-ui,sans-serif; --serif:'Playfair Display',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{
+  font-family:var(--font);color:var(--ink);line-height:1.6;overflow-x:hidden;
+  background:radial-gradient(circle at 20% 10%,var(--white),transparent 45%),linear-gradient(160deg,var(--soft),var(--cream));
+  background-attachment:fixed;
+}
+h1,h2,.big,.name{font-family:var(--serif);font-weight:600;line-height:1.2}
+h1{font-size:clamp(2rem,8vw,3.2rem)} h2{font-size:clamp(1.5rem,6vw,2rem)}
+.big{font-size:clamp(1.35rem,5.5vw,1.8rem)}
+.sr{position:absolute;left:-9999px}
+
+/* ===== Layout & page transitions ===== */
+#stage{min-height:100svh;display:grid;place-items:center;padding:4.5rem 1.25rem 2rem}
+.page{display:none;width:min(100%,480px);flex-direction:column;align-items:center;gap:1.1rem;text-align:center}
+.page.active{display:flex;animation:in .7s ease both}
+.page.leaving{display:flex;animation:out .45s ease both}
+@keyframes in{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes out{to{opacity:0;transform:translateY(-14px) scale(.97)}}
+
+/* ===== Buttons ===== */
+.btn{
+  font:600 1rem var(--font);min-height:48px;padding:.8rem 1.8rem;border:0;border-radius:999px;cursor:pointer;
+  background:var(--rose);color:#fff;box-shadow:0 8px 22px rgba(225,29,72,.28);transition:transform .2s,box-shadow .2s;
+}
+.btn:hover{transform:translateY(-2px)} .btn:active{transform:scale(.96)}
+.btn.ghost{background:var(--white);color:var(--rose);box-shadow:0 0 0 2px var(--baby)}
+:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
+.music{position:fixed;top:1rem;right:1rem;z-index:20;width:46px;height:46px;border-radius:50%;border:2px solid var(--baby);
+  background:var(--white);color:var(--rose);font-size:1.2rem;cursor:pointer}
+.music[aria-pressed="true"]{background:var(--rose);color:#fff}
+
+/* ===== Welcome ===== */
+.art{width:min(70vw,240px)} .float{animation:float 5s ease-in-out infinite}
+.beat{transform-origin:100px 90px;animation:beat 1.6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+@keyframes beat{40%{transform:scale(1.18)}}
+
+/* ===== Love Test: meteran ===== */
+.cat{font-size:4rem;line-height:1;transition:transform .3s}
+#p2 h2{min-height:3.2rem;display:flex;align-items:center}
+.pct{font:600 1.5rem var(--font);color:var(--rose)}
+.gauge{width:min(80vw,300px)} .lv{font:italic 600 15px var(--serif);fill:#5b2340}
+#needle{transform-origin:100px 100px;transform-box:view-box;transition:transform .15s;transform:rotate(-90deg)}
+#love{width:min(80vw,300px);accent-color:var(--rose);height:44px}
+.plane{position:absolute;left:.5rem;bottom:14%;width:90px;opacity:.85;animation:float 5s ease-in-out infinite}
+.dash{stroke-dashoffset:0}
+/* ===== Gift: tiga hadiah ===== */
+.page.wide{width:min(100%,640px)}
+.pass{color:var(--rose);font-size:clamp(1.8rem,8vw,2.6rem)}
+.gifts{display:flex;gap:1rem;width:100%;overflow-x:auto;scroll-snap-type:x mandatory;padding:1rem .5rem 1.4rem;justify-content:safe center}
+.gbox{flex:0 0 150px;scroll-snap-align:center;background:none;border:0;cursor:pointer;font:500 .95rem var(--font);color:var(--ink);display:grid;gap:.4rem;justify-items:center}
+.gbox svg{width:150px;height:162px;transition:transform .3s}
+.gbox:hover svg{transform:translateY(-6px) rotate(-2deg)}
+.gbox:nth-child(2) svg{animation:float 4.4s ease-in-out infinite}
+.gbox:nth-child(3) svg{animation:float 5.2s ease-in-out infinite}
+.gbox .glid{transition:transform .7s cubic-bezier(.3,1.4,.5,1)}
+.gbox.opening .glid{transform:translateY(-40px) rotate(-12deg)}
+.gbox.seen span::after{content:" 💗"}
+/* ===== Memory ===== */
+.polaroid{background:#fff;padding:.8rem .8rem 1rem;border-radius:6px;box-shadow:0 14px 34px rgba(225,29,72,.18);width:min(62vw,240px);transform:rotate(-2deg)}
+.ph{aspect-ratio:9/16;background:linear-gradient(135deg,var(--baby),var(--soft));display:grid;place-items:center;font-size:3rem;overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover}
+.polaroid figcaption{font:italic 1.05rem var(--serif);margin-top:.7rem}
+.player{display:flex;align-items:center;gap:.8rem;background:#fff;border-radius:16px;padding:.6rem .9rem;box-shadow:0 8px 20px rgba(225,29,72,.12);text-align:left}
+.player[hidden]{display:none} .player b{color:var(--rose)} .player small{display:block;opacity:.7}
+.player button{width:44px;height:44px;border-radius:50%;border:0;background:var(--rose);color:#fff;cursor:pointer}
+
+/* ===== Bouquet ===== */
+#bouquet{width:min(88vw,340px);overflow:visible}
+.stem{stroke:#6aa07a;stroke-width:4;fill:none;stroke-linecap:round;stroke-dasharray:260;stroke-dashoffset:260;animation:draw 1.2s var(--d) forwards}
+.bloom{transform-box:fill-box;transform-origin:center;transform:scale(0);animation:bloom 1s var(--d) cubic-bezier(.3,1.5,.5,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}} @keyframes bloom{to{transform:scale(1)}}
+.name{font-size:1.7rem;color:var(--rose);font-style:italic}
+
+/* ===== Letter ===== */
+.envelope{position:relative;width:100%;min-height:120px;transition:min-height .8s}
+.paper{background:var(--cream);border:1px solid var(--baby);outline:6px double var(--soft);outline-offset:-12px;
+  border-radius:10px;padding:2rem 1.6rem;text-align:left;box-shadow:0 14px 34px rgba(225,29,72,.14);
+  transform-origin:top;transition:transform .8s ease,opacity .6s;position:relative}
+.paper::after{content:"🌸 🌷 🌸";position:absolute;right:1.2rem;top:.7rem;font-size:.9rem;opacity:.7}
+.paper h2{color:var(--rose);margin-bottom:1rem;font-size:1.45rem}
+.body{white-space:pre-line;min-height:8rem;margin:.8rem 0}
+.from{font-family:var(--serif);font-style:italic;font-size:1.1rem}
+.flap{display:none}
+.envelope.closed .paper{transform:scale(.25,.1);opacity:0;height:0;padding:0;overflow:hidden}
+.envelope.closed::before{content:"💌";display:block;font-size:5rem;animation:float 3s infinite}
+.row{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center}
+
+/* ===== Floating hearts / sparkles ===== */
+#fx{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.fx{position:absolute;bottom:-40px;opacity:0;animation:rise var(--t) linear var(--d) infinite}
+@keyframes rise{10%{opacity:.7}90%{opacity:.5}to{transform:translateY(-110vh) translateX(var(--x)) rotate(25deg);opacity:0}}
+#stage,.music{position:relative;z-index:1} .music{position:fixed;z-index:20}
+.petal{position:fixed;pointer-events:none;z-index:15;animation:burst 1.6s ease-out forwards}
+@keyframes burst{to{transform:translate(var(--dx),var(--dy)) rotate(300deg);opacity:0}}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  #fx{display:none}
+}
+
+.cover{width:48px;height:48px;border-radius:8px;object-fit:cover}

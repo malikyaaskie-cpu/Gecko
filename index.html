@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#FCE7F3">
+<title>Eits, Ada Sesuatu Buat Kamu! 💗</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="fx" aria-hidden="true"></div>
+<button id="musicBtn" class="music" aria-label="Nyalakan atau matikan musik" aria-pressed="false" hidden>♪</button>
+
+<main id="stage">
+  <!-- 1. WELCOME -->
+  <section class="page active" id="p1" aria-labelledby="t1">
+    <svg class="art float" viewBox="0 0 200 150" aria-hidden="true">
+      <rect x="20" y="50" width="160" height="90" rx="10" fill="#fff" stroke="#FBCFE8" stroke-width="3"/>
+      <path d="M20 56 L100 106 L180 56" fill="none" stroke="#FBCFE8" stroke-width="3"/>
+      <path d="M20 56 L100 20 L180 56 Z" fill="#FCE7F3" stroke="#FBCFE8" stroke-width="3"/>
+      <path class="beat" d="M100 108c-14-10-22-18-22-27a12 12 0 0122-6 12 12 0 0122 6c0 9-8 17-22 27z" fill="var(--rose)"/>
+    </svg>
+    <h1 id="t1">Eits, Ada Sesuatu Buat Kamu! 💗</h1>
+    <p data-bind="welcomeMessage"></p>
+    <button class="btn" data-go="2">Buka coba</button>
+  </section>
+
+  <!-- 2. LOVE TEST (meteran cinta) -->
+  <section class="page" id="p2" aria-labelledby="t2">
+    <svg class="plane" viewBox="0 0 120 60" aria-hidden="true"><path d="M4 30 L40 22 L36 36Z" fill="#F9A8D4"/><path d="M4 30 L36 36 L28 48Z" fill="#F472B6"/><path class="dash" d="M40 22C70 -6 110 20 80 46" fill="none" stroke="#F472B6" stroke-width="1.6" stroke-dasharray="3 3"/></svg>
+    <div class="cat" id="cat" aria-hidden="true">🐱</div>
+    <h2 id="t2"><span id="say">how much do you love me?</span></h2>
+    <p class="pct" id="pct" aria-live="polite">0%</p>
+    <svg class="gauge" viewBox="0 0 200 112" aria-hidden="true">
+      <g id="gaugeArcs"></g>
+      <circle cx="100" cy="100" r="44" fill="#fff"/>
+      <text x="100" y="92" text-anchor="middle" class="lv">love</text>
+      <line id="needle" x1="100" y1="100" x2="100" y2="28" stroke="#5b2340" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="100" cy="100" r="6" fill="#fff" stroke="#5b2340" stroke-width="3"/>
+    </svg>
+    <input type="range" id="love" min="0" max="100" value="0" aria-label="Seberapa besar cintamu padaku? Geser untuk menjawab">
+    <button class="btn" id="nextGauge" data-go="3" hidden>Lanjut</button>
+  </section>
+
+  <!-- 3. SURPRISE GIFTS (tiga hadiah) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+    <symbol id="giftbox" viewBox="0 0 120 130">
+      <path d="M18 58h84v62a6 6 0 01-6 6H24a6 6 0 01-6-6z" fill="#7CC4E8"/>
+      <path d="M72 58h30v62a6 6 0 01-6 6H72z" fill="#5BA9D6"/>
+      <rect x="52" y="58" width="16" height="68" fill="#F4A6A6"/>
+      <g class="glid"><rect x="12" y="40" width="96" height="22" rx="4" fill="#8FD0EE" stroke="#5BA9D6" stroke-width="2"/>
+      <rect x="52" y="40" width="16" height="22" fill="#F4A6A6"/>
+      <path d="M60 40C30 4 6 26 34 40zM60 40C90 4 114 26 86 40z" fill="#F9C4C4" stroke="#E58B8B" stroke-width="2"/>
+      <circle cx="60" cy="40" r="7" fill="#F4A6A6" stroke="#E58B8B" stroke-width="2"/></g>
+    </symbol></defs></svg>
+  <section class="page wide" id="p3" aria-labelledby="t3">
+    <h2 id="t3" class="pass">egiluyyy lulus jirss</h2>
+    <p>ada surprise dikitt niehh</p>
+    <div class="gifts">
+      <button class="gbox" data-open="4" aria-label="Buka hadiah: Buket"><svg viewBox="0 0 120 130"><use href="#giftbox"/></svg><span>Bunga 🌷</span></button>
+      <button class="gbox" data-open="6" aria-label="Buka hadiah: Kenangan"><svg viewBox="0 0 120 130"><use href="#giftbox"/></svg><span>Kenangan 📸</span></button>
+      <button class="gbox" data-open="5" aria-label="Buka hadiah: Surat"><svg viewBox="0 0 120 130"><use href="#giftbox"/></svg><span>Surat 💌 </span></button>
+    </div>
+  </section>
+
+  <!-- 6. MEMORY (polaroid + musik) -->
+  <section class="page" id="p6" aria-labelledby="t6">
+    <h2 id="t6">Kenangan for you (cuman ada satu jir)📷</h2>
+    <figure class="polaroid">
+      <div class="ph"><img id="photo" alt="" hidden><span id="phFallback">💗</span></div>
+      <figcaption id="photoCap"></figcaption>
+    </figure>
+    <div class="player" id="player" hidden>
+      <img id="cover" class="cover" alt="Sampul lagu"><div><strong id="songT"></strong><small id="songA"></small></div>
+      <button id="playBtn" aria-label="Putar atau jeda musik">▶</button>
+    </div>
+    <button class="btn" data-go="3">Kembali ke Hadiah</button>
+  </section>
+
+  <!-- 4. DIGITAL BOUQUET -->
+  <section class="page" id="p4" aria-labelledby="t4">
+    <h2 id="t4" class="sr">Buket Digital</h2>
+    <svg id="bouquet" viewBox="0 0 300 330" role="img" aria-label="Sebuket bunga"></svg>
+    <p class="name" data-bind="receiverName"></p>
+    <p data-bind="bouquetMessage"></p>
+    <button class="btn" data-go="5">Baca Suratku</button>
+  </section>
+
+  <!-- 5. LOVE LETTER -->
+  <section class="page" id="p5" aria-labelledby="t5">
+    <div class="envelope" id="envelope">
+      <div class="paper" id="paper">
+        <h2 id="t5">my letter for u 💌</h2>
+        <p class="to">Untuk <span data-bind="receiverName"></span>,</p>
+        <p class="body" id="letterBody" aria-live="polite"></p>
+        <p class="from">with love,<br><span data-bind="senderName"></span></p>
+      </div>
+      <div class="flap"></div>
+    </div>
+    <div class="row">
+      <button class="btn ghost" id="toggleLetter">Tutup Surat</button>
+      <button class="btn ghost" data-go="3">Kembali ke Hadiah</button>
+      <button class="btn" id="replay">Ulangi Kejutan Kecil Kita</button>
+    </div>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
